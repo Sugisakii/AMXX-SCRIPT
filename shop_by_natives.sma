@@ -49,7 +49,7 @@ public _native_add_item(pl, pr)
 	get_string(1, array[ITEM_NAME], charsmax(array[ITEM_NAME]));
 	array[ITEM_COST] = get_param(2);
 	array[ITEM_TEAM] = get_param(3);
-	get_string(3, func, charsmax(func));
+	get_string(4, func, charsmax(func));
 	if(get_func_id(func, pl) == -1)
 	{
 		log_error(AMX_ERR_NATIVE, "Invalid Function");
@@ -88,11 +88,11 @@ public open_shop(id)
 		}
 		if(money >= ItemArray[ITEM_COST])
 		{
-			formatex(item, charsmax(item), "\w%s [\%s$%s\w]", ItemArray[ITEM_NAME], AVAILABLE, ItemArray[ITEM_COST])
+			formatex(item, charsmax(item), "\w%s [\%s$%i\w]", ItemArray[ITEM_NAME], AVAILABLE, ItemArray[ITEM_COST])
 		}
 		else
 		{
-			formatex(item, charsmax(item), "%s \w[\%s$%s\w]", ItemArray[ITEM_NAME], UNAVAILABLE, ItemArray[ITEM_COST])
+			formatex(item, charsmax(item), "%s \w[\%s$%i\w]", ItemArray[ITEM_NAME], UNAVAILABLE, ItemArray[ITEM_COST])
 		}
 		menu_additem(menu, item, num, 0, g_MenuCallBack)
 	}
@@ -132,28 +132,3 @@ public buymenu_handle(id, menu, item)
 	}
 	cs_set_user_money(id, cs_get_user_money(id) - ItemArray[ITEM_COST]);
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
